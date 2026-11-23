@@ -14,7 +14,7 @@ const milestones = [
     id: 1,
     year: "2019",
     title: "Where It All Began",
-    text: "EveryKind started in a small home studio — a kitchen table covered in ribbon, tissue paper, and wildflowers. Our founder Kemi simply wanted to give people a way to say “I thought of you” without compromise.",
+    text: "EveryKind started in a small home studio — a kitchen table covered in ribbon, tissue paper, and wildflowers. Our founder Hope simply wanted to give people a way to say “I thought of you” without compromise.",
   },
   {
     id: 2,
