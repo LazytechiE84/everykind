@@ -112,14 +112,14 @@ function About() {
       <section className="about-origin">
         <div className="origin-inner">
           <div className="origin-photo">
-            <img src="/about/founder.jpg" alt="Kemi Adeyemi, founder of EveryKind" />
+            <img src="/about/founder.jpg" alt="Hope Eloma, founder of EveryKind" />
             <div className="founder-note">
               <h4>A note from our founder</h4>
               <p>
                 “I started EveryKind because I kept noticing that gifts were an
                 afterthought. I wanted to make them the whole point.”
               </p>
-              <span>— Kemi Adeyemi</span>
+              <span>— Hope Eloma</span>
             </div>
           </div>
 
@@ -131,7 +131,7 @@ function About() {
               A big idea.
             </h2>
             <p>
-              In 2019, Kemi Adeyemi cleared her kitchen table, surrounded
+              In 2019, Hope Eloma cleared her kitchen table, surrounded
               herself with ribbons, dried flowers, and the unwavering belief
               that gifting could be more than a last-minute errand — it could
               be an act of genuine intention.
