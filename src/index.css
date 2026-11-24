@@ -1227,6 +1227,377 @@ footer{
     }
 }
 
+/* CONTACT PAGE */
+.ct-inner{
+    width: 100%;
+    max-width: 1020px;
+    padding: 0 20px;
+}
+
+.ct-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+    text-align: left;
+    align-items: start;
+}
+
+.ct-card{
+    padding: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 18px;
+}
+
+.ct-card h2,
+.ct-info h2{
+    margin-bottom: 22px;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.ct-card label{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.ct-card input,
+.ct-card textarea{
+    display: block;
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.95em;
+    color: var(--head-color);
+    background-color: transparent;
+}
+
+.ct-card textarea{
+    min-height: 130px;
+    resize: vertical;
+}
+
+.ct-card input:focus,
+.ct-card textarea:focus{
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.ct-card form button{
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 36px;
+    font-family: inherit;
+    font-size: 1em;
+    color: var(--white);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ct-card form button:hover{
+    transform: translateY(-2px);
+}
+
+.ct-success{
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.ct-side{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ct-info{
+    padding: 30px;
+    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.ct-row{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.ct-row:last-child{
+    margin-bottom: 0;
+}
+
+.ct-icon{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.ct-row h4{
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.ct-row p{
+    margin-top: 4px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.faq-item{
+    margin-bottom: 18px;
+}
+
+.faq-item:last-child{
+    margin-bottom: 0;
+}
+
+.faq-item h4{
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.faq-item p{
+    margin-top: 6px;
+    font-size: 0.85em;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+@media (max-width: 800px){
+    .ct-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .ct-inner{
+        padding: 0;
+    }
+}
+
+/* CART */
+.cart-link{
+    position: relative;
+}
+
+.cart-badge{
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+
+.cart-inner{
+    width: 100%;
+    max-width: 1020px;
+    padding: 0 20px;
+}
+
+.cart-grid{
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+    text-align: left;
+    align-items: start;
+}
+
+.cart-row{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+}
+
+.cart-row img{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cart-info{
+    flex: 1;
+}
+
+.cart-info h3{
+    font-size: 1.05em;
+    font-weight: 500;
+}
+
+.cart-info p{
+    margin: 4px 0;
+    font-size: 0.85em;
+    color: var(--text-color);
+}
+
+.cart-info span{
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+.qty{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty button{
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    font-size: 1em;
+    background: transparent;
+    cursor: pointer;
+}
+
+.qty button:hover{
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.line-total{
+    min-width: 80px;
+    font-weight: 600;
+    text-align: right;
+    color: var(--primary-color);
+}
+
+.remove{
+    border: none;
+    background: none;
+    font-size: 1em;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.remove:hover{
+    color: var(--primary-color);
+}
+
+.cart-summary{
+    position: sticky;
+    top: 100px;
+    padding: 28px;
+    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.cart-summary h2{
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.sum-row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.sum-total{
+    padding-top: 12px;
+    margin-bottom: 22px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    font-size: 1.15em;
+    font-weight: 600;
+}
+
+.cart-btn{
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 36px;
+    font-family: inherit;
+    font-size: 1em;
+    text-align: center;
+    color: var(--white);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.cart-btn:hover{
+    transform: translateY(-2px);
+}
+
+.cart-clear{
+    display: block;
+    margin: 16px auto 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 0.9em;
+    color: var(--text-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cart-empty{
+    margin-top: 40px;
+}
+
+.cart-empty i{
+    font-size: 3em;
+    color: var(--primary-color);
+}
+
+.cart-empty p{
+    margin: 16px 0 24px;
+    color: var(--text-color);
+}
+
+.cart-empty .cart-btn{
+    display: inline-block;
+    width: auto;
+    padding: 14px 32px;
+}
+
+@media (max-width: 800px){
+    .cart-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .cart-inner{
+        padding: 0;
+    }
+
+    .cart-row{
+        flex-wrap: wrap;
+    }
+}
+
 /* RESPONSIVE */
 
 /* Tablet: tighten side padding, everything still in its normal layout */

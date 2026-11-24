@@ -1,4 +1,8 @@
-function ProductCard({ image, name, category, price }) {
+import { useCart } from "../context/cartcontext.jsx";
+
+function ProductCard({ id, image, name, category, price }) {
+  const { addItem } = useCart();
+
   return (
     <div className="product-card">
       <div className="card-img">
@@ -7,7 +11,7 @@ function ProductCard({ image, name, category, price }) {
           <button aria-label="Add to wishlist">
             <i className="fa-regular fa-heart"></i>
           </button>
-          <button aria-label="Add to cart">
+          <button aria-label="Add to cart" onClick={() => addItem(id)}>
             <i className="fa-solid fa-cart-shopping"></i>
           </button>
         </div>
