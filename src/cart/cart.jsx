@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/cartcontext.jsx";
+import { useCart } from "../context/cartcontext";       // header, productcard, cart
 
 const WHATSAPP_NUMBER = "2349161804230";
 const formatPrice = (n) => `$${n.toFixed(2)}`;

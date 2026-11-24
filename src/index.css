@@ -29,59 +29,267 @@ html{
     scroll-behavior: smooth;
 }
 
-/* HEADER AND NAV STYLING */
-header nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 130px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--secondary-color);
-    font-size: 16px;
+/* ============================================================
+   NAVBAR: GLASS DYNAMIC ISLAND
+   ============================================================ */
+.site-header{
+    --glass: linear-gradient(135deg, rgba(255,255,255,0.74), rgba(255,255,255,0.5));
+    --glass-scrolled: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.64));
     position: sticky;
-    top: 0;
+    top: 12px;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
+    margin: 12px 16px 0;
+    pointer-events: none;
 }
 
-nav span img{
-    height: 30px;
+.island-wrap{
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    transition: max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.island-wrap.scrolled{
+    max-width: 780px;
+}
+
+.island{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 10px 14px 10px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow:
+        0 8px 32px rgba(216, 30, 91, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+    pointer-events: auto;
+    transition: padding 0.35s, background 0.35s, box-shadow 0.35s;
+}
+
+/* glossy highlight on the glass */
+.island::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(120% 140% at 15% -30%, rgba(255, 255, 255, 0.75), transparent 55%);
+    pointer-events: none;
+}
+
+.island > *{
+    position: relative;
+}
+
+.island-wrap.scrolled .island{
+    padding: 6px 10px 6px 20px;
+    background: var(--glass-scrolled);
+    box-shadow:
+        0 12px 40px rgba(216, 30, 91, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.island-logo{
+    justify-self: start;
+    display: flex;
     align-items: center;
 }
 
-nav ul{
-    display: inline-flex;
-    align-items: center;
+.island-logo img{
+    display: block;
+    height: 28px;
+    transition: height 0.35s;
 }
 
-nav ul li{
+.island-wrap.scrolled .island-logo img{
+    height: 24px;
+}
+
+.island-links{
+    display: flex;
+    gap: 4px;
+    justify-self: center;
     list-style: none;
-    padding: 0 10px;
 }
 
-nav ul li a{
-    text-decoration: none;
-    color: var(--text-color);
-    transition: color 0.2s;
+.island-links a,
+.mobile-menu a{
+    display: block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 500;
+    color: var(--head-color);
+    transition: background-color 0.2s, color 0.2s;
 }
 
-nav ul li a:hover{
+.island-links a:hover,
+.mobile-menu a:hover{
     color: var(--primary-color);
+    background-color: rgba(216, 30, 91, 0.1);
 }
 
-nav .icons li a{
+.island-links a.active,
+.mobile-menu a.active{
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+
+.island-actions{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-self: end;
+}
+
+.island-actions a,
+.burger{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.05rem;
     color: var(--primary-color);
-    font-size: 1.2em;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-/* MAIN SECTION STYLING */
+.island-actions a:hover,
+.burger:hover{
+    background-color: rgba(216, 30, 91, 0.12);
+}
+
+.cart-link{
+    position: relative;
+}
+
+.cart-badge{
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+
+.island-actions .cart-badge{
+    top: 1px;
+    right: 0;
+}
+
+.burger{
+    display: none;
+}
+
+/* mobile dropdown */
+.mobile-menu{
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 28px;
+    background: var(--glass-scrolled);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: 0 12px 40px rgba(216, 30, 91, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+}
+
+.mobile-menu.open{
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+}
+
+.mobile-menu a{
+    padding: 14px 18px;
+    border-radius: 18px;
+}
+
+@media (min-width: 801px){
+    .mobile-menu{
+        display: none;
+    }
+}
+
+@media (max-width: 800px){
+    .site-header{
+        top: 10px;
+        margin: 10px 12px 0;
+    }
+
+    .island-wrap,
+    .island-wrap.scrolled{
+        max-width: 100%;
+    }
+
+    .island{
+        grid-template-columns: 1fr auto;
+        padding: 8px 10px 8px 18px;
+    }
+
+    .island-links{
+        display: none;
+    }
+
+    .burger{
+        display: flex;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .island-wrap,
+    .island,
+    .mobile-menu{
+        transition: none;
+    }
+}
+
+/* browsers without backdrop-filter get a solid fallback */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+    .island,
+    .mobile-menu{
+        background: rgba(255, 255, 255, 0.96);
+    }
+}
+
+/* ============================================================
+   LANDING PAGE: HERO
+   ============================================================ */
 main{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     gap: 30px;
     padding: 60px 130px;
 }
@@ -89,7 +297,7 @@ main{
 main div{
     display: grid;
     margin: 0 15px;
-    width: 440px;
+    width: 550px;
     max-width: 100%;
 }
 
@@ -109,7 +317,7 @@ main #hero-section p.label{
 }
 
 main #hero-section h1{
-    font-size: 3.5em;
+    font-size: 4em;
     margin: 20px 0;
 }
 
@@ -118,7 +326,7 @@ main #hero-section h1 span{
 }
 
 main #hero-section .hero-text{
-    font-size: 1.1em;
+    font-size: 1.2em;
     letter-spacing: 0.005rem;
     color: var(--text-color);
 }
@@ -170,8 +378,8 @@ main #hero-section #data span{
 
 main #hero-section #data span h3{
     margin-right: 2px;
-
 }
+
 main #hero-section #data p{
     color: var(--text-color);
 }
@@ -179,15 +387,17 @@ main #hero-section #data p{
 main div img{
     padding: 0;
     margin: 0;
-    height:500px;
-    width: 440px;
+    height:580px;
+    width: 540px;
     max-width: 100%;
     object-fit: cover;
     border-radius: 18px;
     box-shadow: 1px 1px 50px rgb(252, 180, 204);
 }
 
-/* PRODUCT SECTION STYLING */
+/* ============================================================
+   LANDING PAGE: PRODUCTS
+   ============================================================ */
 section{
     display: flex;
     justify-content: center;
@@ -228,7 +438,7 @@ section{
 }
 
 #products .cards .item{
-    width: 250px;
+    width: 275px;
     border-radius: 20px;
     background-color: #fff;
     text-align: left;
@@ -243,7 +453,7 @@ section{
 }
 
 #products .cards .item img{
-    height: 250px;
+    height: 300px;
     width: 275px;
     object-fit: cover;
     border-top-left-radius: 20px;
@@ -294,7 +504,9 @@ section{
     transform: scale(1.05);
 }
 
-/* MAGIC SECTION */
+/* ============================================================
+   LANDING PAGE: MAGIC
+   ============================================================ */
 .magic #magic{
     width: 100%;
 }
@@ -346,8 +558,9 @@ section{
     line-height: 1.5em;
 }
 
-/* SERVICES SECTION */
-
+/* ============================================================
+   LANDING PAGE: SERVICES
+   ============================================================ */
 .services .service{
     display: flex;
     flex-wrap: wrap;
@@ -402,7 +615,9 @@ section{
     line-height: normal;
 }
 
-/* TESTIMONIALS SECTION */
+/* ============================================================
+   LANDING PAGE: TESTIMONIALS
+   ============================================================ */
 .testimonials{
     background-color: var(--white);
 }
@@ -455,7 +670,9 @@ section{
     font-size: 0.9em;
 }
 
-/* CTA SECTION */
+/* ============================================================
+   LANDING PAGE: CTA
+   ============================================================ */
 .cta{
     background-color: var(--secondary-color);
     text-align: left;
@@ -524,7 +741,9 @@ section{
     box-shadow: var(--shadow);
 }
 
-/* FOOTER */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 footer{
     background-color: var(--head-color);
     color: #9ca3af;
@@ -635,18 +854,12 @@ footer{
     color: var(--primary-color);
 }
 
-/* SHOP PAGE */
+/* ============================================================
+   SHOP PAGE
+   ============================================================ */
 .shop-inner{
     width: 100%;
     max-width: 1020px;
-}
-
-.shop-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 27px;
-    margin-top: 40px;
-    text-align: left;
 }
 
 .chips{
@@ -676,6 +889,14 @@ footer{
 .chip.active{
     background-color: var(--primary-color);
     color: var(--white);
+}
+
+.shop-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 27px;
+    margin-top: 40px;
+    text-align: left;
 }
 
 .product-card .card-img{
@@ -735,7 +956,9 @@ footer{
     color: var(--primary-color);
 }
 
-/* SERVICES PAGE */
+/* ============================================================
+   SERVICES PAGE
+   ============================================================ */
 .svc-inner{
     width: 100%;
     max-width: 1020px;
@@ -839,13 +1062,9 @@ footer{
     transform: translateY(-2px);
 }
 
-@media (max-width: 700px){
-    .svc-inner{
-        padding: 0;
-    }
-}
-
-/* ABOUT PAGE */
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
 .eyebrow{
     font-size: 0.8em;
     letter-spacing: 0.15em;
@@ -1051,7 +1270,7 @@ footer{
     transform: translateY(-2px);
 }
 
-/* ABOUT: JOURNEY */
+/* journey */
 .about-journey{
     display: block;
     padding: 80px 20px;
@@ -1140,7 +1359,7 @@ footer{
     color: var(--text-color);
 }
 
-/* ABOUT: VALUES */
+/* values */
 .about-values{
     display: block;
     padding: 80px 20px;
@@ -1191,43 +1410,9 @@ footer{
     color: var(--text-color);
 }
 
-@media (max-width: 700px){
-    .timeline::before{
-        left: 7px;
-    }
-
-    .tl-item.left,
-    .tl-item.right{
-        justify-content: flex-start;
-        text-align: left;
-    }
-
-    .tl-item::after{
-        left: 7px;
-    }
-
-    .tl-content{
-        width: 100%;
-        padding-left: 36px;
-    }
-}
-
-@media (max-width: 700px){
-    .about-hero h1{
-        font-size: 2.4em;
-    }
-
-    .about-intro p{
-        font-size: 1.2em;
-    }
-
-    .stat{
-        flex: 1 1 45%;
-        border-right: none;
-    }
-}
-
-/* CONTACT PAGE */
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
 .ct-inner{
     width: 100%;
     max-width: 1020px;
@@ -1380,38 +1565,9 @@ footer{
     color: var(--text-color);
 }
 
-@media (max-width: 800px){
-    .ct-grid{
-        grid-template-columns: 1fr;
-    }
-
-    .ct-inner{
-        padding: 0;
-    }
-}
-
-/* CART */
-.cart-link{
-    position: relative;
-}
-
-.cart-badge{
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-    border-radius: 9px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--white);
-    background-color: var(--primary-color);
-}
-
+/* ============================================================
+   CART PAGE
+   ============================================================ */
 .cart-inner{
     width: 100%;
     max-width: 1020px;
@@ -1584,25 +1740,12 @@ footer{
     padding: 14px 32px;
 }
 
-@media (max-width: 800px){
-    .cart-grid{
-        grid-template-columns: 1fr;
-    }
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 
-    .cart-inner{
-        padding: 0;
-    }
-
-    .cart-row{
-        flex-wrap: wrap;
-    }
-}
-
-/* RESPONSIVE */
-
-/* Tablet: tighten side padding, everything still in its normal layout */
+/* Tablet: tighten side padding */
 @media (max-width: 1100px){
-    header nav,
     main,
     footer{
         padding-left: 40px;
@@ -1614,7 +1757,7 @@ footer{
     }
 }
 
-/* Large phone / small tablet: stack the hero, center text, single-column CTA */
+/* Large phone / small tablet */
 @media (max-width: 900px){
     main{
         flex-direction: column;
@@ -1673,23 +1816,24 @@ footer{
     }
 }
 
-/* Phone: single-column nav, stacked buttons, tighter type */
+/* Phone */
+@media (max-width: 800px){
+    .ct-grid,
+    .cart-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .ct-inner,
+    .cart-inner{
+        padding: 0;
+    }
+
+    .cart-row{
+        flex-wrap: wrap;
+    }
+}
+
 @media (max-width: 700px){
-    header nav{
-        padding: 12px 20px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    header nav ul:not(.icons){
-        order: 3;
-        width: 100%;
-        justify-content: center;
-        padding-top: 10px;
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-
     main{
         padding: 30px 20px;
     }
@@ -1784,9 +1928,46 @@ footer{
         text-align: center;
         gap: 8px;
     }
+
+    /* inner pages */
+    .svc-inner{
+        padding: 0;
+    }
+
+    .about-hero h1{
+        font-size: 2.4em;
+    }
+
+    .about-intro p{
+        font-size: 1.2em;
+    }
+
+    .stat{
+        flex: 1 1 45%;
+        border-right: none;
+    }
+
+    .timeline::before{
+        left: 7px;
+    }
+
+    .tl-item.left,
+    .tl-item.right{
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .tl-item::after{
+        left: 7px;
+    }
+
+    .tl-content{
+        width: 100%;
+        padding-left: 36px;
+    }
 }
 
-/* Small phone: trim type scale further so headings don't wrap awkwardly */
+/* Small phone */
 @media (max-width: 480px){
     main #hero-section p.label{
         font-size: 16px;
@@ -1818,9 +1999,5 @@ footer{
     .testi-item,
     .magic .standards > div{
         max-width: 100%;
-    }
-
-    nav span img{
-        height: 24px;
     }
 }
