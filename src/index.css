@@ -286,18 +286,18 @@ html{
    LANDING PAGE: HERO
    ============================================================ */
 main{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 60px 130px;
+    gap: 40px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 60px 80px;
 }
 
-main div{
+main > div{
     display: grid;
-    margin: 0 15px;
-    width: 550px;
+    min-width: 0;
     max-width: 100%;
 }
 
@@ -317,7 +317,7 @@ main #hero-section p.label{
 }
 
 main #hero-section h1{
-    font-size: 4em;
+    font-size: clamp(2.6em, 4vw, 4em);
     margin: 20px 0;
 }
 
@@ -385,11 +385,12 @@ main #hero-section #data p{
 }
 
 main div img{
+    display: block;
     padding: 0;
     margin: 0;
-    height:580px;
-    width: 540px;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 54 / 58;
     object-fit: cover;
     border-radius: 18px;
     box-shadow: 1px 1px 50px rgb(252, 180, 204);
@@ -1760,13 +1761,12 @@ footer{
 /* Large phone / small tablet */
 @media (max-width: 900px){
     main{
-        flex-direction: column;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
         padding-top: 40px;
     }
 
-    main div{
-        margin: 0 auto;
+    main > div{
         justify-items: center;
     }
 
@@ -1775,8 +1775,7 @@ footer{
     }
 
     main div img{
-        height: auto;
-        max-height: 420px;
+        max-width: 420px;
     }
 
     main #hero-section #data{
